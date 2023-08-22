@@ -45,8 +45,8 @@
 
 #wrapper {
     display: grid;
-    grid-template-columns: 25% 25% 25%;
-    grid-template-rows: 25% 25%;
+    grid-template-columns: 35% 35% 35%;
+    grid-template-rows: 50% 50%;
     margin: 30px;
 }
 
@@ -72,3 +72,6 @@
     margin-right: 5px; /* 조절 가능한 간격 */
 }
 
+td {
+    width: 400px;
+}
