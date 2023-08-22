@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainPageCss.css}">
+    <link rel="stylesheet" type="text/css" href="css/mainPageCss.css">
+    <title>책쟁이</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/bookReview.js"></script>
+    -->
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <h1 class="webTitle">책쟁이</h1>
+        <form action="/logout" method="post">
+            <button id="logoutBtn" type="submit" onclick="location.href='home.html'">로그아웃</button>
+        </form>
+        <form action="/test" method="get">
+            <button id="testbtn" type="submit">게시판</button>
+        </form>
+        <hr>
+    </div>
+
+    <!--    <table style="border: 1px solid">-->
+    <!--        <span th:each="board: ${list}">-->
+    <!--            <tr th:if="${boardStat.index ge 3}"></tr>-->
+    <!--            <td>-->
+    <!--                <div style="width: 40%; float: left;">-->
+    <!--                    <img th:src="${board.cover}" style="width: 100%;">-->
+    <!--                </div>-->
+    <!--                <div style="width: 60%; float: left;">-->
+    <!--                    <span th:text="${board.title}" style="color: #606060; font-size: 130%; padding-left: 5%"></span><br>-->
+    <!--                    <span style="color: #9D9D9D; font-size: 70%; padding-left: 5%;">저자</span>-->
+    <!--                    <span th:text="${board.author}" style="font-size: 70%;"></span>-->
+    <!--                    <span style="color: #9D9D9D; font-size: 70%;">출판사</span>-->
+    <!--                    <span th:text="${board.publisher}" style="font-size: 70%;"></span>-->
+    <!--                    <br>-->
+
+    <!--                    <button type="button" id="getReview" th:data="${board.title}" onclick="getReview(this.getAttribute('data'))">리뷰 보기</button>-->
+
+    <!--                    <button type="button" id="writeReview" th:data="${board.title}" onclick="getTitle(this.getAttribute('data'))">리뷰 작성</button>-->
+    <!--                </div>-->
+    <!--            </td>-->
+    <!--        </span>-->
+    <!--    </table>-->
+
+    <!--    <table class="table table-striped" style="border: 1px solid">-->
+
+    <!--        <thead class="thead-dark">-->
+    <!--        <tr>-->
+    <!--            <th scope="col" style="width: 10%">no</th>-->
+    <!--            <th scope="col">제목</th>-->
+    <!--            <th scope="col" style="width: 15%">작성자</th>-->
+    <!--        </tr>-->
+    <!--        </thead>-->
+
+    <!--        <tbody>-->
+    <!--        <tr th:each="board : ${boardList}">-->
+    <!--            <th scope="row" th:text="${boardStat.index + 1}">1</th>-->
+    <!--            <td th:text="${board.title}"></td>-->
+    <!--            <td th:text="${board.author}"></td>-->
+    <!--        </tr>-->
+    <div id="wrapper">
+        <table class="book" th:each="board : ${boardList}">
+            <td>
+                <div style="width: 40%; float: left;">
+                    <img th:src="${board.cover}" style="width: 100%;">
+                </div>
+                <div style="width: 60%; float: left;">
+                    <span th:text="${board.title}" style="color: #606060; font-size: 130%; padding-left: 5%"></span><br>
+                    <span style="color: #9D9D9D; font-size: 70%; padding-left: 5%;">저자</span>
+                    <span th:text="${board.author}" style="font-size: 70%;"></span>
+                    <span style="color: #9D9D9D; font-size: 70%;">출판사</span>
+                    <span th:text="${board.publisher}" style="font-size: 70%;"></span>
+                    <br>
+
+                    <button type="button" id="getReview" th:data="${board.title}" onclick="getReview(this.getAttribute('data'))">리뷰 보기</button>
+
+                    <button type="button" id="writeReview" th:data="${board.title}" onclick="getTitle(this.getAttribute('data'))">리뷰 작성</button>
+                </div>
+            </td>
+        </table>
+    </div>
+    <!--        </tbody>-->
+
+    <!--    </table>-->
+
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="@{/mainPage}" aria-label="Previous">
+                    <span aria-hidden="true">처음</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/mainPage(page = ${pagination.prevBlock})}" aria-label="Previous">
+                    <span aria-hidden="true">이전</span>
+                </a>
+            </li>
+            <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                <li class="page-item"
+                    th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                    th:each="pageButton : ${#numbers.sequence(start, end)}">
+                    <a class="page-link" th:href="@{/mainPage(page = ${pageButton})}" th:text=${pageButton}></a>
+                </li>
+            </th:block>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/mainPage(page = ${pagination.nextBlock})}" aria-label="Next">
+                    <span aria-hidden="true">다음</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/mainPage(page = ${pagination.totalPageCnt})}" aria-label="Previous">
+                    <span aria-hidden="true">끝</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!--
+    1. 페이징 처리 수정
+    2. url 변경 없이 화면 내용만 바꾸도록..?
+    -->
+
+
+    <!--
+    <div th:each="board: ${list}" style="width: 30%;">
+        <div style="width: 40%; float: left;">
+            <img th:src="${board.cover}" style="width: 100%;">
+        </div>
+
+        <div style="width: 60%; float: left;">
+            <span th:text="${board.title}" style="color: #606060; font-size: 130%; padding-left: 5%"></span><br>
+            <span style="color: #9D9D9D; font-size: 70%; padding-left: 5%;">저자</span>
+            <span th:text="${board.author}" style="font-size: 70%;"></span>
+            <span style="color: #9D9D9D; font-size: 70%;">출판사</span>
+            <span th:text="${board.publisher}" style="font-size: 70%;"></span>
+            <br>
+
+
+
+            <button type="button" id="getReview" th:data="${board.title}" onclick="getReview(this.getAttribute('data'))">리뷰 보기</button>
+
+            <button type="button" id="writeReview" th:data="${board.title}" onclick="getTitle(this.getAttribute('data'))">리뷰 작성</button>
+        </div>
+    </div>
+    -->
+
+    <!--
+    th:text="${board.cover}"
+    th:onclick=""|location.href="'@{/logout}'|"
+    onclick="location.href='home.html"
+    <form action="/members/login" method="post">
+        <div class="form-group">
+            <div class="outline-class">
+                <input type="text" id="id" name="id" placeholder="아이디를 입력하세요">
+                <label for="id">ID</label>
+            </div>
+
+            <div class="outline-class">
+                <input type="text" id="pwd" name="pwd" placeholder="비밀번호를 입력하세요">
+                <label for="pwd">PWD</label>
+            </div>
+
+            <button type="submit" id="loginBtn">로그인</button><br>
+            <a href="/members/join">회원가입</a>
+        </div>
+
+    </form>
+    -->
+</div>
+
+<script src="js/bookReview.js"></script>
+
+</body>
+</html>

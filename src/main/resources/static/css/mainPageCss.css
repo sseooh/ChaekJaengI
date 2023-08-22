@@ -1,0 +1,74 @@
+.webTitle {
+    text-align: center;
+}
+
+#logoutBtn {
+    border-radius: 50%;
+    height:50px;
+    width:50px;
+    float:right;
+}
+
+#getReview {
+    border-radius:50px;
+    font-size: 15px;
+    padding: 10px;
+    width: 100px;
+    background: #DCDCDC;
+    color: #5F5E5E;
+    border: 1px solid transparent;
+    box-shadow: 0 0 1rem 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+    margin-top: 60%;
+    margin-bottom: 10px;
+    margin-left: 5%;
+}
+
+#writeReview {
+    border-radius:50px;
+    font-size: 15px;
+    padding: 10px;
+    width: 100px;
+    background: #A3C45E;
+    color: white;
+    border: 1px solid transparent;
+    box-shadow: 0 0 1rem 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+    margin-top: 60%;
+    margin-bottom: 10px;
+    margin-left: 5%;
+}
+
+.book {
+    display: inline;
+}
+
+#wrapper {
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    grid-template-rows: 25% 25%;
+    margin: 30px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    max-width: 300px; /* 원하는 최대 너비로 조절 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.page-link {
+    display: block;
+    padding: 3px 8px; /* 조절 가능한 패딩 */
+    border: 1px solid #ccc;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px; /* 조절 가능한 폰트 크기 */
+}
+
+.page-item {
+    margin-right: 5px; /* 조절 가능한 간격 */
+}
+

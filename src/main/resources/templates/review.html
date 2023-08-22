@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/reviewCss.css}">
+  <link rel="stylesheet" type="text/css" href="css/reviewCss.css">
+  <title>책쟁이</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="main-group">
+        <h1 class="webTitle">책쟁이</h1>
+        <form action="/logout" method="post">
+            <button id="logoutBtn" type="submit" onclick="location.href='home.html'">로그아웃</button>
+        </form>
+    </div>
+
+
+    <form action="/saveReview" method="post">
+      <div class="form-group">
+          <input type="text" id="title" name="title" style="display: none" th:value="${title}">
+          <input type="text" id="name" name="name" placeholder="제목">
+          <textarea type="text" maxlength="1500" id="content" name="content" placeholder="내용을 입력하세요."></textarea>
+      </div>
+
+        <div class="outline-class">
+            <div class="textLengthWrap">
+                <p class="textCount">0자</p>
+                <p class="textTotal">/1500자</p>
+            </div>
+            <button type="submit" id="writeBtn">작성</button><br>
+        </div>
+
+    </form>
+</div>
+<script>
+    $('#content').keyup(function (e) {
+	let content = $(this).val();
+
+    // 글자수 세기
+    if (content.length == 0 || content == '') {
+    	$('.textCount').text('0자');
+    } else {
+    	$('.textCount').text(content.length + '자');
+    }
+
+    // 글자수 제한
+    if (content.length > 1500) {
+    	// 1500자 부터는 타이핑 되지 않도록
+        $(this).val($(this).val().substring(0, 1500));
+    };
+});
+
+</script>
+</body>
+</html>

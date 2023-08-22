@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/loginCss.css}">
+    <link rel="stylesheet" type="text/css" href="css/loginCss.css">
+    <title>login</title>
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <h1 class="webTitle">책쟁이</h1>
+
+        <form action="/mainPage" method="post">
+            <div class="form-group">
+                <div class="outline-class">
+                    <input type="text" id="id" name="id" placeholder="아이디를 입력하세요">
+                    <label for="id">ID</label>
+                </div>
+
+                <div class="outline-class">
+                    <input type="text" id="pwd" name="pwd" placeholder="비밀번호를 입력하세요">
+                    <label for="pwd">PWD</label>
+                </div>
+
+                <button type="submit" id="loginBtn">로그인</button><br>
+                <a href="/members/joinForm">회원가입</a>
+
+            </div>
+
+        </form>
+
+        <!--
+        <p>책쟁이</p>
+        <p>
+            <a href="/members/new">회원 가입</a>
+            <a href="/members">회원 목록</a>
+        </p>
+        -->
+    </div>
+</div>
+
+</body>
+</html>
