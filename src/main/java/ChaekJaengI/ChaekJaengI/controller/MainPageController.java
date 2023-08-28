@@ -64,6 +64,7 @@ public class MainPageController {
 
     @GetMapping("/mainPage")
     public String Board(Model model, @RequestParam(defaultValue = "1") int page) {
+
         int totalListCnt = boardService.findAllCnt();
 
         Pagination pagination = new Pagination(totalListCnt, page);

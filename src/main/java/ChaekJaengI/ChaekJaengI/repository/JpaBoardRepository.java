@@ -1,6 +1,7 @@
 package ChaekJaengI.ChaekJaengI.repository;
 
 import ChaekJaengI.ChaekJaengI.domain.Board;
+import ChaekJaengI.ChaekJaengI.domain.Review;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,10 +32,29 @@ public class JpaBoardRepository implements BoardRepository {
         return ((Number) em.createQuery("select count(*) from Board").getSingleResult()).intValue();
     }
 
+    public int ReviewFindCnt(String title) {
+        return ((Number) em.createQuery("select count(*) from Board m where m.title = :title")
+                .setParameter("title", title)
+                .getSingleResult()).intValue();
+    }
+
+
     public List<Board> findListPaging(int startIndex, int pageSize) {
         return em.createQuery("select b from Board b", Board.class)
                 .setFirstResult(startIndex)
                 .setMaxResults(pageSize)
                 .getResultList();
     }
+
+
+    public List<Review> findReviewListPaging(int startIndex, int pageSize, String title) {
+        return em.createQuery("select b from Review b where b.title = :title", Review.class)
+                .setParameter("title", title)
+                .setFirstResult(startIndex)
+                .setMaxResults(pageSize)
+                .getResultList();
+    }
+
+
+
 }
