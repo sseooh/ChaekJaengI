@@ -1,12 +1,15 @@
 .webTitle {
     text-align: center;
+    margin-top: 30px;
 }
 
 #logoutBtn {
+    position: absolute;
     border-radius: 50%;
-    height:50px;
-    width:50px;
-    float:right;
+    height:45px;
+    width:45px;
+    top: 1px;
+    right: 50px;
 }
 
 #getReview {
@@ -41,6 +44,7 @@
 
 .book {
     display: inline;
+    margin-top: 20px;
 }
 
 #wrapper {
@@ -54,7 +58,7 @@
     display: flex;
     list-style: none;
     padding: 0;
-    max-width: 300px; /* 원하는 최대 너비로 조절 */
+    max-width: fit-content; /* 원하는 최대 너비로 조절 */
     margin: 0 auto; /* 가운데 정렬 */
 }
 
@@ -74,4 +78,15 @@
 
 td {
     width: 400px;
+}
+
+.page-header {
+    position: relative;
+}
+
+hr {
+    margin-top: 30px;
+    height: 1px;
+    border: 0;
+    background: #cec8c8;
 }
