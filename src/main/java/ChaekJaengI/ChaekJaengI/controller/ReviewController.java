@@ -1,19 +1,15 @@
 package ChaekJaengI.ChaekJaengI.controller;
 
-import ChaekJaengI.ChaekJaengI.domain.Board;
-import ChaekJaengI.ChaekJaengI.domain.Member;
-import ChaekJaengI.ChaekJaengI.domain.Review;
+import ChaekJaengI.ChaekJaengI.domain.*;
 import ChaekJaengI.ChaekJaengI.repository.ReviewRepository;
 import ChaekJaengI.ChaekJaengI.service.BoardService;
 import ChaekJaengI.ChaekJaengI.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -56,20 +52,62 @@ public class ReviewController {
         return "/review";
     }
 
-    @PostMapping("reviewList")
-    public String getReviewPage(String title, Model model) {
+    @PostMapping("/reviewList")
+    public String ReviewList(String title, Model model, @RequestParam(defaultValue = "1") int page){
         Optional<Board> board = boardService.getBookInfo(title);
 
-        model.addAttribute("list",reviewService.getTitleInfo(board.get().title));
+        int ReviewListCnt = boardService.ReviewFindCnt(title);
+
+        Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
+
+        int startIndex = pagination_review.getStartIndex();
+
+        int pageSize = pagination_review.getPageSize();
 
         model.addAttribute("cover", board.get().cover);
         model.addAttribute("title", board.get().title);
         model.addAttribute("author", board.get().author);
         model.addAttribute("publisher", board.get().publisher);
 
-        return "/reviewList";
+        List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
+
+        model.addAttribute("list", list);
+        model.addAttribute("pagination_review", pagination_review);
+
+        return "reviewList";
     }
 
+
+    @GetMapping("/reviewList")
+    public String getReviewPage(String title, Model model, @RequestParam(defaultValue = "1") int page) {
+        Optional<Board> board = boardService.getBookInfo(title);
+
+        if (board.isPresent()){
+            int ReviewListCnt = boardService.ReviewFindCnt(title);
+
+            Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
+
+
+            int startIndex = pagination_review.getStartIndex();
+
+            int pageSize = pagination_review.getPageSize();
+
+            model.addAttribute("cover", board.get().cover);
+            model.addAttribute("title", board.get().title);
+            model.addAttribute("author", board.get().author);
+            model.addAttribute("publisher", board.get().publisher);
+
+            //model.addAttribute("list",reviewService.getTitleInfo(board.get().title));
+            List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
+
+            model.addAttribute("list", list);
+            model.addAttribute("pagination_review", pagination_review);
+        }else{
+            model.addAttribute("error", "도서 정보가 없습니다.");
+        }
+
+        return "reviewList";
+    }
 
 
     /*

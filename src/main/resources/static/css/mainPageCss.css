@@ -76,6 +76,7 @@
     margin-right: 5px; /* 조절 가능한 간격 */
 }
 
+
 td {
     width: 400px;
 }
@@ -90,3 +91,4 @@ hr {
     border: 0;
     background: #cec8c8;
 }
+
