@@ -107,7 +107,7 @@ public class MainPageController {
             session.invalidate();
         }
 
-        return "redirect:/";
+        return "/home";
     }
 
 }

@@ -7,6 +7,9 @@
 .header-title {
     text-decoration: none;
     color: black;
+    display: block;
+    width: fit-content;
+    margin: 30px auto auto auto;
 }
 
 #name{
@@ -73,4 +76,5 @@
     width:45px;
     top: 1px;
     right: 50px;
+    cursor: pointer;
 }
