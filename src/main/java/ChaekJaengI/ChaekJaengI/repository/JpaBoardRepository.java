@@ -33,7 +33,7 @@ public class JpaBoardRepository implements BoardRepository {
     }
 
     public int ReviewFindCnt(String title) {
-        return ((Number) em.createQuery("select count(*) from Board m where m.title = :title")
+        return ((Number) em.createQuery("select count(*) from Review m where m.title = :title")
                 .setParameter("title", title)
                 .getSingleResult()).intValue();
     }
@@ -54,6 +54,8 @@ public class JpaBoardRepository implements BoardRepository {
                 .setMaxResults(pageSize)
                 .getResultList();
     }
+
+
 
 
 

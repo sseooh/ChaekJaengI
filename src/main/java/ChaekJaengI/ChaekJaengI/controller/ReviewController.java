@@ -54,9 +54,12 @@ public class ReviewController {
 
     @PostMapping("/reviewList")
     public String ReviewList(String title, Model model, @RequestParam(defaultValue = "1") int page){
+
         Optional<Board> board = boardService.getBookInfo(title);
 
         int ReviewListCnt = boardService.ReviewFindCnt(title);
+        System.out.println();
+        System.out.println("ReviewListCnt "+ ReviewListCnt);
 
         Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
 
@@ -70,6 +73,11 @@ public class ReviewController {
         model.addAttribute("publisher", board.get().publisher);
 
         List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
+        System.out.println();
+        for (Review review : list) {
+            System.out.println("Review id: " + review.getId());
+        }
+        System.out.println();
 
         model.addAttribute("list", list);
         model.addAttribute("pagination_review", pagination_review);
