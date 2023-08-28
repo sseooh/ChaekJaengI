@@ -25,7 +25,6 @@ public class ReviewController {
     int ReviewListCnt;
 
 
-
     @Autowired
     public ReviewController(ReviewService reviewService, ReviewRepository reviewRepository, BoardService boardService) {
         this.reviewService = reviewService;
@@ -63,40 +62,32 @@ public class ReviewController {
 //        Optional<Board> board = boardService.getBookInfo(title);
         board = boardService.getBookInfo(title);
 
-
 //        int ReviewListCnt = boardService.ReviewFindCnt(title);
         ReviewListCnt = boardService.ReviewFindCnt(title);
-
-        System.out.println();
-        System.out.println("ReviewListCnt "+ ReviewListCnt);
-
-
-
-        Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
-
-        int startIndex = pagination_review.getStartIndex();
-
-        int pageSize = pagination_review.getPageSize();
 
         model.addAttribute("cover", board.get().cover);
         model.addAttribute("title", board.get().title);
         model.addAttribute("author", board.get().author);
         model.addAttribute("publisher", board.get().publisher);
 
-        List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
-        System.out.println();
+        if(ReviewListCnt==0)
+            return "zeroReviewList";
+        else{
+            Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
 
-        for (Review review : list) {
-            System.out.println("Review id: " + review.getId());
+            int startIndex = pagination_review.getStartIndex();
+
+            int pageSize = pagination_review.getPageSize();
+
+
+            List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
+
+            model.addAttribute("list", list);
+            model.addAttribute("pagination_review", pagination_review);
+
+            return "reviewList";
         }
-        System.out.println();
-
-        model.addAttribute("list", list);
-        model.addAttribute("pagination_review", pagination_review);
-
-        return "reviewList";
     }
-
 
     @GetMapping("/reviewList")
     public String getReviewPage(String title, Model model, @RequestParam(defaultValue = "1") int page) {
@@ -105,28 +96,54 @@ public class ReviewController {
         if (board.isPresent()){
 //            int ReviewListCnt = boardService.ReviewFindCnt(title);
 
-            Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
-
-
-            int startIndex = pagination_review.getStartIndex();
-
-            int pageSize = pagination_review.getPageSize();
-
             model.addAttribute("cover", board.get().cover);
             model.addAttribute("title", board.get().title);
             model.addAttribute("author", board.get().author);
             model.addAttribute("publisher", board.get().publisher);
 
             //model.addAttribute("list",reviewService.getTitleInfo(board.get().title));
-            List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
 
-            model.addAttribute("list", list);
-            model.addAttribute("pagination_review", pagination_review);
+            if(ReviewListCnt==0)
+                return "zeroReviewList";
+            else{
+                Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
+
+                int startIndex = pagination_review.getStartIndex();
+
+                int pageSize = pagination_review.getPageSize();
+
+
+                List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
+
+                model.addAttribute("list", list);
+                model.addAttribute("pagination_review", pagination_review);
+
+                return "reviewList";
+            }
+
         }else{
             model.addAttribute("error", "도서 정보가 없습니다.");
+            return "reviewList";
         }
 
-        return "reviewList";
+    }
+
+    @PostMapping("zeroReviewList")
+    public String zeroReview(Model model) {
+        model.addAttribute("cover", board.get().cover);
+        model.addAttribute("title", board.get().title);
+        model.addAttribute("author", board.get().author);
+        model.addAttribute("publisher", board.get().publisher);
+        return "/zeroReviewList";
+    }
+
+    @GetMapping("zeroReviewList")
+    public String getZeroReview(Model model) {
+        model.addAttribute("cover", board.get().cover);
+        model.addAttribute("title", board.get().title);
+        model.addAttribute("author", board.get().author);
+        model.addAttribute("publisher", board.get().publisher);
+        return "/zeroReviewList";
     }
 
 

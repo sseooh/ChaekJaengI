@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/zeroReviewListCss.css}">
+  <link rel="stylesheet" type="text/css" href="css/zeroReviewListCss.css">
+  <title>책쟁이</title>
+</head>
+<body>
+
+<div class="container">
+  <div>
+    <h1 class="webTitle">책쟁이</h1>
+    <br>
+    <form action="/logout" method="post">
+      <button id="logoutBtn" type="submit" onclick="location.href='home.html'">로그아웃</button>
+    </form>
+    <hr>
+  </div>
+
+  <div class="form-group">
+    <img th:src="${cover}" id="cover" name="cover"><br>
+    <span th:text="${title}" id="title"></span><br>
+    <span id="저자">저자
+           <span th:text="${author}" id="author"></span></span>
+    <span id="출판사">출판사
+            <span th:text="${publisher}" id="publisher"></span></span>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+</body>
+</html>
