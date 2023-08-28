@@ -1,12 +1,15 @@
 .webTitle {
     text-align: center;
+    margin-top: 30px;
 }
 
 #logoutBtn {
+    position: absolute;
     border-radius: 50%;
-    height:50px;
-    width:50px;
-    float:right;
+    height:45px;
+    width:45px;
+    top: 1px;
+    right: 50px;
 }
 
 .mom{
@@ -101,4 +104,15 @@ img {
 
 .page-item {
     margin-right: 5px; /* 조절 가능한 간격 */
+}
+
+.page-header {
+    position: relative;
+}
+
+hr {
+    margin-top: 30px;
+    height: 1px;
+    border: 0;
+    background: #cec8c8;
 }
