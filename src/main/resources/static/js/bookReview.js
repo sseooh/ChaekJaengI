@@ -1,6 +1,6 @@
 function getTitle(bookTitle) {
     // console.log(bookTitle);
-    alert(bookTitle);
+    //alert(bookTitle);
 
     /*
     $.ajax({
@@ -38,6 +38,7 @@ function getTitle(bookTitle) {
 }
 
 function getReview(book) {
+
 
     let f = document.createElement('form');
 

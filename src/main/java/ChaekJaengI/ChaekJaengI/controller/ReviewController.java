@@ -70,6 +70,8 @@ public class ReviewController {
         System.out.println();
         System.out.println("ReviewListCnt "+ ReviewListCnt);
 
+
+
         Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
 
         int startIndex = pagination_review.getStartIndex();
@@ -83,6 +85,7 @@ public class ReviewController {
 
         List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
         System.out.println();
+
         for (Review review : list) {
             System.out.println("Review id: " + review.getId());
         }
