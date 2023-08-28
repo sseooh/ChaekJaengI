@@ -20,6 +20,11 @@ public class ReviewController {
 
     private final BoardService boardService;
 
+    /* 이렇게 꺼내놔도 되는건가 다시 찾아보기! */
+    Optional<Board> board;
+    int ReviewListCnt;
+
+
 
     @Autowired
     public ReviewController(ReviewService reviewService, ReviewRepository reviewRepository, BoardService boardService) {
@@ -55,9 +60,13 @@ public class ReviewController {
     @PostMapping("/reviewList")
     public String ReviewList(String title, Model model, @RequestParam(defaultValue = "1") int page){
 
-        Optional<Board> board = boardService.getBookInfo(title);
+//        Optional<Board> board = boardService.getBookInfo(title);
+        board = boardService.getBookInfo(title);
 
-        int ReviewListCnt = boardService.ReviewFindCnt(title);
+
+//        int ReviewListCnt = boardService.ReviewFindCnt(title);
+        ReviewListCnt = boardService.ReviewFindCnt(title);
+
         System.out.println();
         System.out.println("ReviewListCnt "+ ReviewListCnt);
 
@@ -91,10 +100,10 @@ public class ReviewController {
 
     @GetMapping("/reviewList")
     public String getReviewPage(String title, Model model, @RequestParam(defaultValue = "1") int page) {
-        Optional<Board> board = boardService.getBookInfo(title);
+//        Optional<Board> board = boardService.getBookInfo(title);
 
         if (board.isPresent()){
-            int ReviewListCnt = boardService.ReviewFindCnt(title);
+//            int ReviewListCnt = boardService.ReviewFindCnt(title);
 
             Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
 
