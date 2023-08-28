@@ -24,14 +24,14 @@
     <div id="wrapper">
         <table class="book" th:each="board : ${boardList}">
             <td>
-                <div style="width: 40%; float: left;">
-                    <img th:src="${board.cover}" style="width: 100%; border-radius: 5%;">
+                <div style="width: 160px; height: 230px; float: left;">
+                    <img th:src="${board.cover}" style="width: 100%; height: 100%; border-radius: 5%;">
                 </div>
-                <div style="width: 60%; float: left;">
+                <div style="width: 240px; height: 230px; float: left; position: relative;">
                     <span th:text="${#strings.abbreviate(board.title,14)}" class="book-title" style="color: #606060; font-size: 130%; padding-left: 5%"></span><br>
                     <span style="color: #9D9D9D; font-size: 70%; padding-left: 5.5%;">저자</span>
-                    <span th:text="${board.author}" style="font-size: 70%;"></span>
-                    <span style="color: #9D9D9D; font-size: 70%;">출판사</span>
+                    <span th:text="${board.author}" style="font-size: 70%;"></span><br>
+                    <span style="color: #9D9D9D; font-size: 70%; padding-left: 5.5%;">출판사</span>
                     <span th:text="${board.publisher}" style="font-size: 70%;"></span>
                     <br>
 
