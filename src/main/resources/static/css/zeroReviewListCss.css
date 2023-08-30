@@ -68,28 +68,29 @@ img {
 }
 
 .zero-group{
-    background-color: rgba(217, 217, 217, 0.29);
     margin-left:10%;
-    width:45%;
-    height:35%;
+    width:750px;
+    height:410px;
     font-size:170%;
     margin-top:5%;
     border-radius:2%;
     display:flex;
+    position: relative;
+    box-shadow: 0 0 1rem 3px rgba(0 0 0 / 15%);
 }
 
 #write{
     margin-left:7%;
-    margin-top:7%;
+    margin-top:12%;
+    position:absolute;
 }
 
 #image{
-    margin-left:10%;
-    margin-right:2%;
-    margin-bottom:5%;
-    margin-top:5%;
-    width:40%;
-    height:40%;
+    margin-top:7%;
+    width:300px;
+    height:300px;
+    position:absolute;
+    right:60px;
 }
 
 #writeReview {
@@ -102,8 +103,8 @@ img {
     border: 1px solid transparent;
     box-shadow: 0 0 1rem 3px rgba(0 0 0 / 15%);
     cursor: pointer;
-    margin-top:2%;
-    margin-left:5%;
+    margin-left:7%;
     position: absolute;
+    top: 300px;
 
 }

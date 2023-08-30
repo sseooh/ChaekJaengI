@@ -48,11 +48,13 @@ public class JpaBoardRepository implements BoardRepository {
 
 
     public List<Review> findReviewListPaging(int startIndex, int pageSize, String title) {
-        return em.createQuery("select b from Review b where b.title = :title", Review.class)
+        return em.createQuery("select b from Review b where b.title = :title order by b.num desc", Review.class)
                 .setParameter("title", title)
                 .setFirstResult(startIndex)
                 .setMaxResults(pageSize)
                 .getResultList();
     }
+
+
 
 }
