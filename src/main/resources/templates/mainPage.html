@@ -15,7 +15,9 @@
             <h1 class="webTitle">책쟁이</h1>
         </a>
         <form action="/logout" method="post">
-            <button id="logoutBtn" type="submit" onclick="location.href='home.html'">로그아웃</button>
+            <button id="logoutBtn" type="submit" th:href="@{/home}">
+                <img class="profile-img" src="https://static-storychat.pstatic.net/2020/3/30/10/2460260_f06h215h5i790.jpg?type=rsc5" alt="마이페이지"/>
+            </button>
         </form>
 <!--        <form action="/test" method="get">-->
 <!--            <button id="testbtn" type="submit">게시판</button>-->
