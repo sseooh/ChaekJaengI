@@ -76,11 +76,12 @@
 
 .page-link {
     display: block;
-    padding: 3px 8px; /* 조절 가능한 패딩 */
-    border: 1px solid #ccc;
+    padding: 3px 7px; /* 조절 가능한 패딩 */
+    border: none;
+    /*border: 1px solid #ccc;*/
     text-align: center;
     text-decoration: none;
-    color: #333;
+    color: #9b9b9b;
     font-size: 12px; /* 조절 가능한 폰트 크기 */
 }
 
