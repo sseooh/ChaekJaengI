@@ -9,28 +9,43 @@
 <body>
 
 <div class="container">
-  <div>
-    <h1 class="webTitle">책쟁이</h1>
-    <br>
+  <div class="page-header">
+    <a class="header-title" th:href="@{/mainPage}">
+      <h1 class="webTitle">책쟁이</h1>
+    </a>
+    <!--    <br>-->
     <form action="/logout" method="post">
       <button id="logoutBtn" type="submit" onclick="location.href='home.html'">로그아웃</button>
     </form>
     <hr>
   </div>
 
-  <div class="form-group">
-    <img th:src="${cover}" id="cover" name="cover"><br>
-    <span th:text="${title}" id="title"></span><br>
-    <span id="저자">저자
+  <div class="mom">
+    <div class="form-group">
+      <img th:src="${cover}" id="cover" name="cover"><br>
+      <span th:text="${title}" id="title"></span><br>
+      <span id="저자">저자
            <span th:text="${author}" id="author"></span></span>
-    <span id="출판사">출판사
+      <span id="출판사">출판사
             <span th:text="${publisher}" id="publisher"></span></span>
-    <br>
+      <br>
+    </div>
+
+    <div class="zero-group">
+      <div class="review-group">
+        <span id="write">리뷰가 없습니다~<br><br>첫번째 리뷰 작성자가<br> 되어주세요 :)</span><br>
+        <button type="button" id="writeReview" th:data="${title}" onclick="getTitle(this.getAttribute('data'))">리뷰 작성하러 가기</button>
+      </div>
+      <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDAzMzFfNDYg%2FMDAxNTg1NjU0NTQzNjIw.JLAjqm12FlAnGZpsuUbbQ--NdOFfni6dTFw_-2z6l1Qg.ZmhIAnQiz2hRlVOkPa6jmtyzCq4CwbCvBf6_99uQOWQg.JPEG.bearpin_%2F1585654558345.jpg&type=sc960_832" id="image"/>
+    </div>
+
   </div>
 
 
 
+
 </div>
+<script src="js/bookReview.js"></script>
 
 
 </body>
