@@ -51,12 +51,12 @@
         <ul class="pagination">
             <li class="page-item">
                 <a class="page-link" th:href="@{/mainPage}" aria-label="Previous">
-                    <span aria-hidden="true">처음</span>
+                    <span aria-hidden="true"><<</span>
                 </a>
             </li>
             <li class="page-item">
                 <a class="page-link" th:href="@{/mainPage(page = ${pagination.prevBlock})}" aria-label="Previous">
-                    <span aria-hidden="true">이전</span>
+                    <span aria-hidden="true"><</span>
                 </a>
             </li>
             <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
@@ -68,12 +68,12 @@
             </th:block>
             <li class="page-item">
                 <a class="page-link" th:href="@{/mainPage(page = ${pagination.nextBlock})}" aria-label="Next">
-                    <span aria-hidden="true">다음</span>
+                    <span aria-hidden="true">></span>
                 </a>
             </li>
             <li class="page-item">
                 <a class="page-link" th:href="@{/mainPage(page = ${pagination.totalPageCnt})}" aria-label="Previous">
-                    <span aria-hidden="true">끝</span>
+                    <span aria-hidden="true">>></span>
                 </a>
             </li>
         </ul>
