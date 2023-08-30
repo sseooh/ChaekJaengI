@@ -20,6 +20,15 @@
     top: 1px;
     right: 50px;
     cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid black;
 }
 
 #getReview {
