@@ -47,7 +47,7 @@ public class ReviewController {
 
         model.addAttribute("list", boardService.boardList());
 
-        return "/mainPage";
+        return "/reviewList";
     }
 
     @PostMapping("review")
