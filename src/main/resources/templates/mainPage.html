@@ -20,7 +20,8 @@
             </button>
             <div class="dropdown-content">
                 <a th:href="@{/myPage}" id="myPage-btn">마이페이지</a>
-                <a th:action="@{/logout}" th:method="post" th:href="@{/home}">로그아웃</a>
+                <form th:action="@{/home}" method="post"><button type="submit">로그아웃</button></form>
+<!--                <a th:action="@{/home}" th:method="post">로그아웃</a>-->
             </div>
         </div>
 <!--        <form action="/logout" method="post">-->
