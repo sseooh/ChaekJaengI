@@ -100,7 +100,7 @@ public class MainPageController {
 
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/home")
     public String Logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if(session != null) {
