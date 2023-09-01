@@ -12,111 +12,6 @@
     margin: 30px auto auto auto;
 }
 
-.mom{
-    display:flex;
-    margin-top:5%;
-}
-
-img {
-    width:60%;
-    margin-left:20%;
-    float:left;
-    object-fit: cover;
-}
-
-#title{
-    color: #606060;
-    font-size: 130%;
-    padding-left:20%
-
-}
-#저자{
-    color: #9D9D9D;
-    font-size: 100%;
-    padding-left:20%;"
-}
-
-#author{
-    font-size: 100%;
-    color: black
-}
-
-#출판사{
-    color: #9D9D9D;
-    font-size: 100%;
-    padding-left:20%;
-}
-
-#publisher{
-    font-size: 100%;
-    color: black
-}
-
-
-.form-group{
-    display:grid
-
-}
-
-.baby{
-    width:70%;
-}
-
-.outline-class{
-    background-color: rgba(217, 217, 217, 0.29);
-    padding: 20px;
-
-}
-
-
-#reviewId{
-    font-size: 130%;
-
-}
-
-#name{
-    font-size: 130%;
-    padding-left:2%;
-}
-
-#content{
-    font-size: 100%;
-
-}
-
-.pagination {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    max-width: fit-content; /* 원하는 최대 너비로 조절 */
-    margin: 30px auto 0;
-}
-
-.page-link {
-    display: block;
-    padding: 3px 8px; /* 조절 가능한 패딩 */
-    border: 1px solid #ccc;
-    text-align: center;
-    text-decoration: none;
-    color: #333;
-    font-size: 12px; /* 조절 가능한 폰트 크기 */
-}
-
-.page-item {
-    margin-right: 5px; /* 조절 가능한 간격 */
-}
-
-.page-header {
-    position: relative;
-}
-
-hr {
-    margin-top: 30px;
-    height: 1px;
-    border: 0;
-    background: #cec8c8;
-}
-
 .profile-btn {
     border: none;
     background: transparent;
@@ -184,3 +79,20 @@ hr {
 #myPage-btn {
     border-bottom: 1px solid #ececec;
 }
+
+.book {
+    display: inline;
+    margin-top: 30px;
+}
+
+.page-header {
+    position: relative;
+}
+
+hr {
+    margin-top: 30px;
+    height: 1px;
+    border: 0;
+    background: #cec8c8;
+}
+
