@@ -26,6 +26,8 @@ public class Pagination {
 
     private int nextBlock;
 
+    private int currentPage;
+
     public int getTotalBlockCnt() {
         return totalBlockCnt;
     }
@@ -122,8 +124,18 @@ public class Pagination {
         this.totalListCnt = totalListCnt;
     }
 
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
     public Pagination(int totalListCnt, int page) {
         setPage(page);
+
+        setCurrentPage(page);
 
         setTotalListCnt(totalListCnt);
 
