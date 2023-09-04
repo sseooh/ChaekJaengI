@@ -12,16 +12,6 @@
     margin: 30px auto auto auto;
 }
 
-#logoutBtn {
-    position: absolute;
-    border-radius: 50%;
-    height:45px;
-    width:45px;
-    top: 1px;
-    right: 50px;
-    cursor: pointer;
-}
-
 .mom{
     display:flex;
 }
@@ -107,6 +97,74 @@ img {
     position: absolute;
     top: 300px;
 
+}
+
+.profile-btn {
+    border: none;
+    background: transparent;
+}
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    border: none;
+    width: 50px;
+    height: 50px;
+    top: 1px;
+    right: 50px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    text-align: center;
+    right: -30px;
+    box-shadow: 0 0 1rem 3px rgba(0 0 0 / 15%);
+    border-radius: 10%
+}
+
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: rgb(37, 37, 37);
+    font-size: 12px;
+    padding: 12px 20px;
+}
+
+.dropdown-content button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: rgb(37, 37, 37);
+    font-size: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #ececec;
+}
+
+.dropdown-content a:hover {
+    background-color: #ececec;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#myPage-btn {
+    border-bottom: 1px solid #ececec;
 }
 
 .page-header {
