@@ -161,3 +161,8 @@ hr {
     background: #cec8c8;
 }
 
+.current-page {
+    color: green;
+    font-weight: bold;
+}
+

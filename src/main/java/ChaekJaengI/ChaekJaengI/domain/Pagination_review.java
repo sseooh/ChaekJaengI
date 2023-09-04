@@ -26,6 +26,8 @@ public class Pagination_review {
 
     private int nextBlock;
 
+    private int currentPage;
+
     public int getTotalBlockCnt() {
         return totalBlockCnt;
     }
@@ -122,8 +124,18 @@ public class Pagination_review {
         this.totalListCnt = totalListCnt;
     }
 
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
     public Pagination_review(int totalListCnt, int page) {
         setPage(page);
+
+        setCurrentPage(page);
 
         setTotalListCnt(totalListCnt);
 

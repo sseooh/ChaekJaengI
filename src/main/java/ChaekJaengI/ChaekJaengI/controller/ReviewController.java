@@ -34,7 +34,7 @@ public class ReviewController {
 
 
     @RequestMapping(value = "/saveReview", method = RequestMethod.POST, produces = "application/html; charset=UTF-8")
-    public String storeCheck(ReviewForm reviewForm, @SessionAttribute(name = "loginMember") Member member, Model model)throws Exception{
+    public String storeCheck(ReviewForm reviewForm, @SessionAttribute(name = "loginMember") Member member, Model model, @RequestParam(defaultValue = "1") int page)throws Exception{
 
         Review review = new Review();
 
@@ -45,7 +45,26 @@ public class ReviewController {
 
         reviewService.store(review);
 
-        model.addAttribute("list", boardService.boardList());
+        board = boardService.getBookInfo(reviewForm.getTitle());
+
+        ReviewListCnt = boardService.ReviewFindCnt(reviewForm.getTitle());
+
+        model.addAttribute("cover", board.get().cover);
+        model.addAttribute("title", board.get().title);
+        model.addAttribute("author", board.get().author);
+        model.addAttribute("publisher", board.get().publisher);
+
+        Pagination_review pagination_review = new Pagination_review(ReviewListCnt, page);
+
+        int startIndex = pagination_review.getStartIndex();
+
+        int pageSize = pagination_review.getPageSize();
+
+
+        List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
+
+        model.addAttribute("list", list);
+        model.addAttribute("pagination_review", pagination_review);
 
         return "/reviewList";
     }
@@ -83,6 +102,7 @@ public class ReviewController {
             List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
 
             model.addAttribute("list", list);
+            model.addAttribute("currentPage",page);
             model.addAttribute("pagination_review", pagination_review);
 
             return "reviewList";
@@ -116,6 +136,7 @@ public class ReviewController {
                 List<Review> list = boardService.findReviewListPaging(startIndex, pageSize, board.get().title);
 
                 model.addAttribute("list", list);
+                model.addAttribute("currentPage",page);
                 model.addAttribute("pagination_review", pagination_review);
 
                 return "reviewList";

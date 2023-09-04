@@ -57,6 +57,7 @@ public class MainPageController {
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("pagination", pagination);
+        model.addAttribute("currentPage",page);
         /////////////
 
         return "mainPage";
@@ -77,6 +78,7 @@ public class MainPageController {
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("pagination", pagination);
+        model.addAttribute("currentPage",page);
 
         return "mainPage";
     }
@@ -95,6 +97,7 @@ public class MainPageController {
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("pagination", pagination);
+        model.addAttribute("currentPage",page);
 //        return "pagingTest/index";
         return "/pagingTest/index";
 
