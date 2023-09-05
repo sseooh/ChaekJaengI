@@ -73,9 +73,16 @@ public class ReviewController {
     }
 
     @PostMapping("review")
-    public String getWritePage(String title, Model model) {
-        model.addAttribute("title", title);
-        return "/review";
+    public String getWritePage(String title, Model model,HttpSession session) {
+        if(session.getAttribute("id") == null){
+            model.addAttribute("msg", "로그인 후 진행해주세요.");
+            model.addAttribute("url", "/mainPage");
+            return "alert";
+        }else{
+            model.addAttribute("title", title);
+            return "/review";
+        }
+
     }
 
     @PostMapping("/reviewList")

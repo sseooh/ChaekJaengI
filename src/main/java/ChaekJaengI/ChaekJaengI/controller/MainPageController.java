@@ -39,7 +39,9 @@ public class MainPageController {
         Member loginMember = memberService.login(form.getId(), form.getPwd());
 
         if(loginMember == null) {
-            return "redirect:/";
+            model.addAttribute("msg", "로그인을 다시 진행해주세요.");
+            model.addAttribute("url", "/home");
+            return "alert";
         }
 
 //        HttpSession session = request.getSession();
