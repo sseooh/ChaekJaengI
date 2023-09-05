@@ -55,6 +55,4 @@ public class JpaBoardRepository implements BoardRepository {
                 .getResultList();
     }
 
-
-
 }

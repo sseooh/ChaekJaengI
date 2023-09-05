@@ -26,4 +26,11 @@ public class JpaReviewRepository implements ReviewRepository{
                 .getResultList();
         return result;
     }
+
+    @Override
+    public List<Review> findMyBook(String id) {
+        return em.createQuery("select r from Review r where r.id = :id order by r.num desc", Review.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }
