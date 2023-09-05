@@ -26,6 +26,8 @@ public class MainPageController {
 
     private final MemberService memberService;
 
+    private HttpSession session;
+
     @Autowired
     public MainPageController(MemberService memberService, BoardService boardService) {
         this.memberService = memberService;
@@ -40,8 +42,13 @@ public class MainPageController {
             return "redirect:/";
         }
 
-        HttpSession session = request.getSession();
+//        HttpSession session = request.getSession();
+        session = request.getSession();
+
         session.setAttribute(SessionConstants.LOGIN_MEMBER, loginMember);
+        session.setAttribute(SessionConstants.ID, loginMember.getId());
+
+        model.addAttribute("user", session);
 
 //        model.addAttribute("list", boardService.boardList());
         /////////////
@@ -64,7 +71,9 @@ public class MainPageController {
     }
 
     @GetMapping("/mainPage")
-    public String Board(Model model, @RequestParam(defaultValue = "1") int page) {
+    public String Board(Model model, HttpServletRequest request, @RequestParam(defaultValue = "1") int page) {
+//        HttpSession session = request.getSession();
+//        session.setAttribute(SessionConstants.LOGIN_MEMBER, loginMember);
 
         int totalListCnt = boardService.findAllCnt();
 
@@ -79,6 +88,7 @@ public class MainPageController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("pagination", pagination);
         model.addAttribute("currentPage",page);
+        model.addAttribute("user", session);
 
         return "mainPage";
     }
@@ -105,7 +115,9 @@ public class MainPageController {
 
     @PostMapping("/home")
     public String Logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
+        session.invalidate();
+        session = request.getSession(false);
+
         if(session != null) {
             session.invalidate();
         }

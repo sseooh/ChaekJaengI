@@ -19,8 +19,9 @@
                 <img class="profile-img" src="https://static-storychat.pstatic.net/2020/3/30/10/2460260_f06h215h5i790.jpg?type=rsc5" alt="마이페이지"/>
             </button>
             <div class="dropdown-content">
-                <a th:href="@{/myPage}" id="myPage-btn">마이페이지</a>
-                <form th:action="@{/home}" method="post"><button type="submit">로그아웃</button></form>
+                <a th:if="${user}==null" th:href="@{/home}" class="dropdown-btn">로그인</a>
+                <a th:if="${user}!=null" th:href="@{/myPage}" class="dropdown-btn">마이페이지</a>
+                <form th:if="${user}!=null" th:action="@{/home}" method="post"><button type="submit">로그아웃</button></form>
 <!--                <a th:action="@{/home}" th:method="post">로그아웃</a>-->
             </div>
         </div>
