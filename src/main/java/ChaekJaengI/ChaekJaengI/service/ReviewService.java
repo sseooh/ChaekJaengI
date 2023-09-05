@@ -23,4 +23,8 @@ public class ReviewService {
     public List<Review> getTitleInfo(String title){
         return reviewRepository.findByTitle(title);
     }
+
+    public List<Review> getMyBook(String id) {
+        return reviewRepository.findMyBook(id);
+    }
 }
