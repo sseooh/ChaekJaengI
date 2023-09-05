@@ -10,4 +10,7 @@ public interface ReviewRepository {
     Review save (Review review);
 
     List<Review> findByTitle(String title);
+
+    List<Review> findMyBook(String id);
+
 }

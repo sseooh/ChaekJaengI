@@ -18,4 +18,5 @@ public interface BoardRepository {
     List<Board> findListPaging(int startIndex, int pageSize);
 
     List<Review> findReviewListPaging(int startIndex, int pageSize, String title);
+
 }

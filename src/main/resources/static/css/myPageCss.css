@@ -76,7 +76,7 @@
     display: block;
 }
 
-#myPage-btn {
+.dropdown-btn {
     border-bottom: 1px solid #ececec;
 }
 
@@ -96,3 +96,23 @@ hr {
     background: #cec8c8;
 }
 
+.page-content {
+    display: flex;
+    margin: 100px 200px;
+}
+
+.menu {
+    width: 200px;
+    text-align: center;
+    line-height: 40px;
+}
+
+#my-review, #my-profile {
+    height: 40px;
+    cursor: pointer;
+}
+
+#my-review {
+    border-bottom: solid #dedede;
+    background: #eaedeb;
+}
