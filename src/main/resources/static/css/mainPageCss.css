@@ -88,7 +88,7 @@
     display: block;
 }
 
-#myPage-btn {
+.dropdown-btn {
     border-bottom: 1px solid #ececec;
 }
 

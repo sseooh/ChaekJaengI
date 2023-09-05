@@ -4,11 +4,14 @@ import ChaekJaengI.ChaekJaengI.domain.*;
 import ChaekJaengI.ChaekJaengI.repository.ReviewRepository;
 import ChaekJaengI.ChaekJaengI.service.BoardService;
 import ChaekJaengI.ChaekJaengI.service.ReviewService;
+import ChaekJaengI.ChaekJaengI.web.SessionConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,7 +79,10 @@ public class ReviewController {
     }
 
     @PostMapping("/reviewList")
-    public String ReviewList(String title, Model model, @RequestParam(defaultValue = "1") int page){
+    public String ReviewList(String title, Model model, HttpSession session, @RequestParam(defaultValue = "1") int page){
+
+        model.addAttribute("user", session.getAttribute("id"));
+
 
 //        Optional<Board> board = boardService.getBookInfo(title);
         board = boardService.getBookInfo(title);
@@ -110,7 +116,10 @@ public class ReviewController {
     }
 
     @GetMapping("/reviewList")
-    public String getReviewPage(String title, Model model, @RequestParam(defaultValue = "1") int page) {
+    public String getReviewPage(String title, Model model, HttpSession session, @RequestParam(defaultValue = "1") int page) {
+
+        model.addAttribute("user", session.getAttribute("id"));
+
 //        Optional<Board> board = boardService.getBookInfo(title);
 
         if (board.isPresent()){
@@ -150,7 +159,8 @@ public class ReviewController {
     }
 
     @PostMapping("zeroReviewList")
-    public String zeroReview(Model model) {
+    public String zeroReview(Model model, HttpSession session) {
+        model.addAttribute("user", session.getAttribute("id"));
         model.addAttribute("cover", board.get().cover);
         model.addAttribute("title", board.get().title);
         model.addAttribute("author", board.get().author);
@@ -159,7 +169,8 @@ public class ReviewController {
     }
 
     @GetMapping("zeroReviewList")
-    public String getZeroReview(Model model) {
+    public String getZeroReview(Model model, HttpSession session) {
+        model.addAttribute("user", session.getAttribute("id"));
         model.addAttribute("cover", board.get().cover);
         model.addAttribute("title", board.get().title);
         model.addAttribute("author", board.get().author);
