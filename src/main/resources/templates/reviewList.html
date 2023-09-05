@@ -13,16 +13,21 @@
     <a class="header-title" th:href="@{/mainPage}">
       <h1 class="webTitle">책쟁이</h1>
     </a>
-<!--    <br>-->
-    <form action="/logout" method="post">
-      <button id="logoutBtn" type="submit" onclick="location.href='home.html'">로그아웃</button>
-    </form>
+    <div class="dropdown">
+      <button class="profile-btn">
+        <img class="profile-img" src="https://static-storychat.pstatic.net/2020/3/30/10/2460260_f06h215h5i790.jpg?type=rsc5" alt="마이페이지"/>
+      </button>
+      <div class="dropdown-content">
+        <a th:href="@{/myPage}" id="myPage-btn">마이페이지</a>
+        <form th:action="@{/home}" method="post"><button type="submit">로그아웃</button></form>
+      </div>
+    </div>
     <hr>
   </div>
 
     <div th:each="review: ${list}" class="mom">
       <span class="form-group">
-        <img th:src="${cover}" id="cover" name="cover"><br>
+        <img th:src="${cover}" id="cover" name="cover" style="border-radius: 5%;"><br>
           <span th:text="${title}" id="title"></span><br>
           <span id="저자">저자
            <span th:text="${author}" id="author"></span></span>
