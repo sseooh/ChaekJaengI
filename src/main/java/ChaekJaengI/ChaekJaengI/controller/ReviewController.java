@@ -74,15 +74,24 @@ public class ReviewController {
 
     @PostMapping("review")
     public String getWritePage(String title, Model model,HttpSession session) {
-        if(session.getAttribute("id") == null){
+        if (session.getAttribute("id") == null) {
             model.addAttribute("msg", "로그인 후 진행해주세요.");
             model.addAttribute("url", "/mainPage");
             return "alert";
-        }else{
+        }else {
             model.addAttribute("title", title);
-            return "/review";
-        }
+            List<Review> myReview = reviewService.getMyBook((String) session.getAttribute("id"));
 
+            for (Review r : myReview) {
+                if (r.title.equals(title)) {
+                    model.addAttribute("msg", "해당 책은 이미 리뷰를 작성하셨습니다.\n추가하실 내용이 있으시면 수정해주세요.");
+                    model.addAttribute("url", "/mainPage");
+                    return "alert";
+                }
+
+            }
+        }
+        return "/review";
     }
 
     @PostMapping("/reviewList")
